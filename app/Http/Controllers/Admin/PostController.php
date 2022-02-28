@@ -87,7 +87,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        @dd($post);
+        $data = [
+            'post' => $post,
+            ];
+        return view('admin.posts.show', $data);
     }
 
     /**
