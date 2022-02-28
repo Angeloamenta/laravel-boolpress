@@ -57,7 +57,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                {{-- <a class="dropdown-item" href="{{ route('admin.posts.create') }}">Aggiungi un post</a> --}}
+                            <a class="dropdown-item" href="{{ route('admin.posts.create') }}">Aggiungi un post</a>
                             </li>
                             <li class="nav-item">
                                 <div aria-labelledby="navbarDropdown">
