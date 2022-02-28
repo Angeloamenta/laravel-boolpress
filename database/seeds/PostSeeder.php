@@ -19,7 +19,7 @@ class PostSeeder extends Seeder
             $newPost = new Post();
             $newPost->title = $faker->sentence(3, true);
             $newPost->content = $faker->paragraphs(5, true);
-            $newPost->slug = Str::slug($newPost->title . '-' . $i, '-');
+            $newPost->slug = Str::slug($newPost->title . '-' . $i, '-'); // prendo il titolo ed ogni spazio viene sostituito da "-" ed aggiungo alla fine $i
             $newPost->save();
         }
     }
