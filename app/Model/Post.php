@@ -13,4 +13,10 @@ class Post extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function user()
+    {
+        //questa tabella si collega ad user sempre con belongTo
+        return $this->belongsTo('App\User');
+    }
 }
