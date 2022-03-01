@@ -2,9 +2,9 @@
 
 use Faker\Generator as Faker;
 use Illuminate\Support\Str; //serve per Str::()
-
 use App\Model\Post;
 use Illuminate\Database\Seeder;
+use App\User;
 
 class PostSeeder extends Seeder
 {
@@ -20,6 +20,7 @@ class PostSeeder extends Seeder
             $newPost->title = $faker->sentence(3, true);
             $newPost->content = $faker->paragraphs(5, true);
             $newPost->slug = Str::slug($newPost->title . '-' . $i, '-'); // prendo il titolo ed ogni spazio viene sostituito da "-" ed aggiungo alla fine $i
+            $newPost->user_id = User::inRandomOrder()->first()->id; // prendu un utente a caso dal db ( tramite id )
             $newPost->save();
         }
     }
