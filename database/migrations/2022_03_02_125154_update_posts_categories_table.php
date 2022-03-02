@@ -15,10 +15,10 @@ class UpdatePostsCategoriesTable extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id')
-            ->afet('id')
+            ->after('id')
             ->nullable();
             $table->foreign('category_id')
-            ->reference('id')
+            ->references('id')
             ->on('categories')->onDelete('set null');
         });
     }
