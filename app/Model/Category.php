@@ -12,8 +12,8 @@ class Category extends Model
         'created_at',
         'updated_at'
     ];
-
-    public function user()
+    // la funzione deve avere il nome corretto altrimenti quando verrà chiamata in show restiuirà errore
+    public function posts()
     {
         //questa tabella si collega a post con hasMany
         return $this->hasMany('App\Model\Post');
