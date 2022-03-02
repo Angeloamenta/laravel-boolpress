@@ -31,4 +31,10 @@ class Post extends Model
         //questa tabella si collega ad user sempre con belongTo
         return $this->belongsTo('App\User');
     }
+
+    public function category()
+    {
+        //questa tabella si collega ad category  con belongTo 
+        return $this->belongsTo('App\Model\Category');
+    }
 }
