@@ -16,7 +16,7 @@
                   <div class="container">
                     <div class="row">
                       <div class="col-1">
-                        {{-- <a href="{{ route('admin.posts.show', $category) }}" class="btn btn-primary">View</a> --}}
+                        <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-primary">View</a>
                       </div>
                     </div>
                   </div>
