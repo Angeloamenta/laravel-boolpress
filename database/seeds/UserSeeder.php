@@ -17,6 +17,14 @@ class UserSeeder extends Seeder
     
     public function run(Faker $faker)
     {
+
+        //creo un user da usare per test
+        $newUser = new User();
+        $newUser->name = 'angelo';
+        $newUser->email = 'angelo@email.com';
+        $passwordStr = '12345678';
+        $newUser->password = Hash::make($passwordStr);
+
         //uso questo seeder per creare altri utenti fake da aggiungere 
         for ($i = 0; $i < 5; $i++) {
             $newUser = new User();
