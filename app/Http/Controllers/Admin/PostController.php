@@ -73,9 +73,9 @@ class PostController extends Controller
         $newPost->fill($data);
         $newPost->slug = $slug;
         $newPost->save();
-
+        
         //solito return redirect che porta allo show ['post' => $newPost ...post è $newPost ]
-        return redirect()->route('admin.posts.show', ['post' => $newPost]);
+        return redirect()->route('admin.posts.show', $newPost->slug);
 
     }
 
@@ -87,10 +87,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $data = [
-            'post' => $post,
-            ];
-        return view('admin.posts.show', $data);
+        // @dd($post->slug);
+        // $data = [
+        //     'post' => $post,
+        //     ];
+        return view('admin.posts.show', ['post' => $post]);
     }
 
     /**

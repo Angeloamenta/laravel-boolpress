@@ -14,6 +14,18 @@ class Post extends Model
         'updated_at',
     ];
 
+     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+
+     // questa funzione serve per lo slug nella uri
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }  
+
     public function user()
     {
         //questa tabella si collega ad user sempre con belongTo
