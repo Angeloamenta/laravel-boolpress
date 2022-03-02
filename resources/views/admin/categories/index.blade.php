@@ -13,13 +13,11 @@
             <div class="card w-100">
                 <div class="card-body">
                   <h5 class="card-title">{{$category['name']}}</h5>
-                  <div class="container">
                     <div class="row">
                       <div class="col-1">
                         <a href="{{ route('admin.categories.show', $category) }}" class="btn btn-primary">View</a>
                       </div>
                     </div>
-                  </div>
                 </div>
               </div>
             @endforeach

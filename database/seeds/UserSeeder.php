@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
         $newUser->email = 'angelo@email.com';
         $passwordStr = '12345678';
         $newUser->password = Hash::make($passwordStr);
-
+        $newUser->save();
         //uso questo seeder per creare altri utenti fake da aggiungere 
         for ($i = 0; $i < 5; $i++) {
             $newUser = new User();
