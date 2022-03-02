@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
             $newPost->content = $faker->paragraphs(5, true);
             $newPost->slug = Str::slug($newPost->title . '-' . $i, '-'); // prendo il titolo ed ogni spazio viene sostituito da "-" ed aggiungo alla fine $i
             $newPost->user_id = User::inRandomOrder()->first()->id; // prendu un utente a caso dal db ( tramite id )
-            $newPost->category_id=Category::inRandomOrder()->first()->id;
+            $newPost->category_id = Category::inRandomOrder()->first()->id;
             $newPost->save();
         }
     }
