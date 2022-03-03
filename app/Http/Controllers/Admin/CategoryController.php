@@ -82,8 +82,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        // @dd($category->id);
+        // @dd(Post::where('category_id', '==', $category->id)->get());
+        $postCategory = Post::where('category_id', '==', $category->id)->get();
+        @dd($postCategory);
+        foreach ($postCategory as $value) {
+
+            $value->delete();
+        }
+
         $category->delete();
         
+
         return redirect()->route('admin.categories.index')->with('status', "Category id $category->name deleted");
     }
 }

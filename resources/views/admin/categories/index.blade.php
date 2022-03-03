@@ -19,6 +19,13 @@
                       </div>
                     </div>
                 </div>
+                <div class="col-1">
+                  <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input class="btn btn-danger" type="submit" value="Delete">             
+                  </form>          
+                </div>
               </div>
             @endforeach
             {{ $categories->links() }}
