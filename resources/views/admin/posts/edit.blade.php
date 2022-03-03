@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form action="{{ route('admin.posts.update') }}" method="POST">
+            <form action="{{ route('admin.posts.update', $post) }}" method="post">
                 @csrf
                 @method('PATCH')
                 <select class="form-select" name="category_id">
@@ -19,7 +19,7 @@
                     @enderror
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+                    <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $post->title) }}">
                     @error('title')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -30,7 +30,7 @@
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
                     <textarea class="form-control" id="content" rows="3"
-                        name="content">{{ old('content') }}</textarea>
+                        name="content">{{ old('content', $post->content) }}</textarea>
                     @error('content')
                         <div class="alert alert-danger">
                             {{ $message }}
