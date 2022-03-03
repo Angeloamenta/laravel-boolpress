@@ -18,11 +18,11 @@
                     <div class="row">
                       <div class="col-1">
                         <a href="{{ route('admin.posts.show', $post) }}" class="btn btn-primary">View</a>
-
                       </div>
+                      {{-- questo if serve per visualizzare la possibilità di cancellare ed editare solo al creatore del post --}}
+                      @if (Auth::user()->id === $post->user_id)
                       <div class="col-1">
                         <a href="{{ route('admin.posts.edit', $post) }}" class="btn btn-primary">Edit</a>
-                        
                       </div>
                       <div class="col-1">
                         <form action="{{ route('admin.posts.destroy', $post) }}" method="post">
@@ -31,6 +31,7 @@
                           <input class="btn btn-danger" type="submit" value="Delete">             
                         </form>          
                       </div>
+                      @endif
                     </div>
                   </div>
                 </div>
