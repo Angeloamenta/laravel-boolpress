@@ -5,6 +5,8 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Category;
+use App\Model\Post;
+
 
 class CategoryController extends Controller
 {
@@ -70,5 +72,18 @@ class CategoryController extends Controller
     {
         // @dd('ciao');
         return view('admin.categories.create');
+    }
+
+      /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        
+        return redirect()->route('admin.categories.index')->with('status', "Category id $category->name deleted");
     }
 }
