@@ -29,25 +29,9 @@ Route::middleware('auth') //controllo se sono loggato
         Route::get('/', 'HomeController@index')
             ->name('home');
 
-        Route::get('/categories', 'CategoryController@index')
-            ->name('categories.index');
 
-            Route::post('/categories', 'CategoryController@store')
-            ->name('categories.store');
+        Route::get('/myposts', 'PostController@indexUser')->name('posts.indexUser');
             
-
-            Route::get('/categories/create', 'CategoryController@create')
-            ->name('categories.create');
-            
-
-            Route::get('/categories/{category}', 'CategoryController@show')
-            ->name('categories.show');
-
-             
-
-
-            Route::get('/myposts', 'PostController@indexUser')->name('posts.indexUser');
-            
-
+        Route::resource('categories', 'CategoryController');
         Route::resource('posts', 'PostController');
     });
