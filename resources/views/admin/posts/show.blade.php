@@ -8,10 +8,10 @@
                 <div class="card-body">
                   <h5 class="card-title">{{$post->title}}</h5>
                   {{-- prendo il nome della cateogria --}}
-                  <h6>{{$post->category()->first()->name}}</h6> 
+                  {{-- <h6>{{$post->category()->first()->name}}</h6>  --}}
                   <p class="card-text">{{$post->content}}</p>
                   {{-- prendo il nome dell'user  --}}
-                  <p>{{$post->user()->first()->name}}</p>
+                  {{-- <p>{{$post->user()->first()->name}}</p> --}}
                   {{-- <a href="" class="btn btn-primary">Button</a> --}}
                 </div>
               </div>

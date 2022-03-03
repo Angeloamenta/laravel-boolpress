@@ -8,6 +8,9 @@ use App\Model\Post;
 use App\Http\Controllers\Controller;
 use App\Model\Category;
 use Illuminate\Http\Request;
+// se non si importa questa stringa con Auth non sarà possibile effettuare il filtro per post utente
+// vedi indexUser
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -19,6 +22,18 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::paginate(10);
+        return view('admin.posts.index', ['posts' => $posts]);
+    }
+
+       /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexUser()
+    {
+        // @dd('ciao');
+        $posts = Post::where('user_id', Auth::user()->id)->paginate(10);
         return view('admin.posts.index', ['posts' => $posts]);
     }
 

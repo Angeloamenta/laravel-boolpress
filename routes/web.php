@@ -35,5 +35,8 @@ Route::middleware('auth') //controllo se sono loggato
             Route::get('/categories/{category}', 'CategoryController@show')
             ->name('categories.show');
 
+            Route::get('/myposts', 'PostController@indexUser')->name('posts.indexUser');
+            
+
         Route::resource('posts', 'PostController');
     });
