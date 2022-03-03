@@ -35,10 +35,10 @@ class CategoryController extends Controller
         ]);
         
         
-        $newCategory->fill($data);
-        $newCategory->save();
-
-        return redirect()->route('admin.categories.show', $newCategory);
+        $category->fill($data);
+        $category->save();
+        
+        return redirect()->route('admin.categories.show',$category);
     }
 
 
