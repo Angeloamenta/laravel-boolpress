@@ -6,12 +6,12 @@
         <div class="row">
             <div class="card w-100">
                 <div class="card-body">
-                  <h5 class="card-title">{{$post->title}}</h5>
+                  <h3 class="card-title"><strong>{{$post->title}}</strong></h3>
                   {{-- prendo il nome della cateogria --}}
-                  {{-- <h6>{{$post->category()->first()->name}}</h6>  --}}
+                   <h5 class="card-title"> <strong>Category:</strong>{{$post->category()->first()->name}}</h5> 
                   <p class="card-text">{{$post->content}}</p>
                   {{-- prendo il nome dell'user  --}}
-                  {{-- <p>{{$post->user()->first()->name}}</p> --}}
+                   <p> by: <strong>{{$post->user()->first()->name}}</strong></p> 
                   {{-- <a href="" class="btn btn-primary">Button</a> --}}
                 </div>
               </div>

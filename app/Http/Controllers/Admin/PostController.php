@@ -135,7 +135,44 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        @dd('ciao');
+        // @dd('ciao');
+         //  @dd($request->all());
+         $validateData = $request->validate ([
+            'title'=> 'required|max:255',
+            'content' => 'required',
+            'category_id'=> 'exists:App\Model\Category,id' //category id deve corrispondere 
+        ]);
+
+        $data = $request->all();
+
+        //parte da rivedere in quanto non perfettamente chiara:
+        //slug postpresente e ciclo while prese dalla repo di chiara per comprenderle meglio
+
+        $slug = Str::slug($data['title'], '-'); // creo variabile slug che viene formata dal titolo diviso da '-' 
+        $postPresente = Post::where('slug', $slug)->first(); // la variabile è costituita da una chiamata post dove 'slug' è uguale a $slug->first() 
+        // ovvero la prima chiamate
+
+        //creo un counter per il ciclo while
+        $counter = 0;
+        while ($postPresente) { //se faccio un dd() di $postPresente mi restituirà null se non esiste,
+            //di conseguenza giro finche è null
+
+            $slug = $slug . '-' . $counter; // nuovo nome che avrò in caso di doppione
+
+            $postPresente = Post::where('slug', $slug)->first(); 
+
+            //il conunter ad ogni giro aumenta "++"
+            $counter++;
+        }
+
+        $newPost = new Post();
+
+        $newPost->fill($data);
+        $newPost->slug = $slug;
+        $newPost->save();
+        
+        //solito return redirect che porta allo show ['post' => $newPost ...post è $newPost ]
+        return redirect()->route('admin.posts.show', $newPost->slug);
     }
 
     /**
