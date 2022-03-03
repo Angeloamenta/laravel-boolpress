@@ -20,8 +20,7 @@
                 <a class="btn btn-primary" href="{{ route('admin.posts.show', $post->slug) }}">View</a>
             </div>
         </div>
-        @endforeach 
-        </table>
+        @endforeach
     </div>
 </div>
 @endsection

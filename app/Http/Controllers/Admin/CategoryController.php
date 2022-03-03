@@ -19,4 +19,37 @@ class CategoryController extends Controller
     {
         return view('admin.categories.show', ['category' => $category]);
     }
+
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        // @dd('store');
+        $data = $request->all();
+        $validateData = $request->validate ([
+            'name'=> 'required|max:255'
+        ]);
+        
+        
+        $newCategory->fill($data);
+        $newCategory->save();
+
+        return redirect()->route('admin.categories.show', $newCategory);
+    }
+
+
+     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        // @dd('ciao');
+        return view('admin.categories.create');
+    }
 }
