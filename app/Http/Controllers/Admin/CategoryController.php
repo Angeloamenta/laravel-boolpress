@@ -82,15 +82,20 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+         //@dd(Post::all());
         // @dd($category->id);
         // @dd(Post::where('category_id', '==', $category->id)->get());
-        $postCategory = Post::where('category_id', '==', $category->id)->get();
-        @dd($postCategory);
-        foreach ($postCategory as $value) {
+        // $postCategory = Post::where('category_id', '==', $category->id)->get();
 
+        // @dd(posts::table('posts')->where('category_id', '==', $category->id)->get());
+
+        // @dd($category->id); ok
+        //@dd(Post::where('category_id', $category->id)->get()); ok
+
+        $postCategory = Post::where('category_id', $category->id)->get();
+        foreach ($postCategory as $value) {
             $value->delete();
         }
-
         $category->delete();
         
 
