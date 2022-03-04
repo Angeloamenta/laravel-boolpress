@@ -12,11 +12,20 @@
                     <option @if (old('category_id') == $category->id) selected @endif value="{{$category->id}}" >{{$category->name}}</option>    
                     @endforeach 
                   </select>
+                  {{-- @dd($tags); --}}
                   @error('category_id')
                         <div class="alert alert-danger">
                             {{ $message }}
                         </div>
                     @enderror
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Default checkbox
+                        </label>
+                      </div>
+                </div>
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
