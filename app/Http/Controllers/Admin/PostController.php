@@ -143,17 +143,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post ,$id)
     {
+        $data = $request->all();
+        @dd($data);
         // @dd('ciao');
          //  @dd($request->all());
          $validateData = $request->validate ([
             'title'=> 'required|max:255',
             'content' => 'required',
-            'category_id'=> 'exists:App\Model\Category,id' //category id deve corrispondere 
+            'category_id'=> 'exists:App\Model\Category,id', //category id deve corrispondere 
+            'tags.*' => 'exists:App\Model\Tag,id'
         ]);
 
-        $data = $request->all();
 
         //parte da rivedere in quanto non perfettamente chiara:
         //slug postpresente e ciclo while prese dalla repo di chiara per comprenderle meglio
@@ -174,12 +176,20 @@ class PostController extends Controller
             //il conunter ad ogni giro aumenta "++"
             $counter++;
         }
+        
+        //$newPost = new Post();
 
-        $newPost = new Post();
+        //$newPost->fill($data);
+        //$newPost->slug = $slug;
 
-        $newPost->fill($data);
-        $newPost->slug = $slug;
-        $newPost->save();
+        $post->update();
+
+        if(!empty($data['tags'])) {
+            $newPost->tags()->sync($data['tags']);   // sync serve a modificare ciò che ho gia (se avessi fatto attch mi avrebbe solo aggiunto qualcosa ma non tolto)  ** 
+            //**se non passo niente invece elimino tutto **
+        }else {
+            $newPost->tags()->detach();  //** se non ho il data tags faccio un detach e cancello tutto**  
+        }
         
         //solito return redirect che porta allo show ['post' => $newPost ...post è $newPost ]
         return redirect()->route('admin.posts.show', $newPost->slug);
