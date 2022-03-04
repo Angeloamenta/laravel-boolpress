@@ -4,7 +4,7 @@ use App\Model\Post;
 use App\Model\Tag;
 use Illuminate\Database\Seeder;
 
-class PostTag extends Seeder
+class PostTagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
