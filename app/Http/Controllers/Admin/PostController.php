@@ -143,10 +143,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post ,$id)
+    public function update(Request $request, Post $post)
     {
         $data = $request->all();
-        @dd($data);
+        //@dd($data);
         // @dd('ciao');
          //  @dd($request->all());
          $validateData = $request->validate ([
@@ -185,14 +185,14 @@ class PostController extends Controller
         $post->update();
 
         if(!empty($data['tags'])) {
-            $newPost->tags()->sync($data['tags']);   // sync serve a modificare ciò che ho gia (se avessi fatto attch mi avrebbe solo aggiunto qualcosa ma non tolto)  ** 
+            $post->tags()->sync($data['tags']);   // sync serve a modificare ciò che ho gia (se avessi fatto attch mi avrebbe solo aggiunto qualcosa ma non tolto)  ** 
             //**se non passo niente invece elimino tutto **
         }else {
-            $newPost->tags()->detach();  //** se non ho il data tags faccio un detach e cancello tutto**  
+            $post->tags()->detach();  //** se non ho il data tags faccio un detach e cancello tutto**  
         }
         
         //solito return redirect che porta allo show ['post' => $newPost ...post è $newPost ]
-        return redirect()->route('admin.posts.show', $newPost->slug);
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
@@ -203,6 +203,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->detach();
         $post->delete();
 
         return redirect()->route('admin.posts.index')->with('status', "Post id $post->id deleted");
