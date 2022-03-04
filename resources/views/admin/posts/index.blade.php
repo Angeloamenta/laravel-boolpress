@@ -12,8 +12,14 @@
             @foreach ($posts as $post)
             <div class="card w-100">
                 <div class="card-body">
-                  <h5 class="card-title">{{$post['title']}}</h5>
+                  <h3 class="card-title">{{$post['title']}}</h3>
                   <p class="card-text">{{$post['content']}}</p>
+                  <div>
+                    <h4>Tag:</h4>
+                    @foreach ($post->tags()->get() as $tag)
+                    <a href="">{{ $tag->name }}</a>
+                @endforeach
+                  </div>
                   <div class="container">
                     <div class="row">
                       <div class="col-1">

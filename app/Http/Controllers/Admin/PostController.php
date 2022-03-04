@@ -63,7 +63,8 @@ class PostController extends Controller
         $validateData = $request->validate ([
             'title'=> 'required|max:255',
             'content' => 'required',
-            'category_id'=> 'exists:App\Model\Category,id' //category id deve corrispondere 
+            'category_id'=> 'exists:App\Model\Category,id', //category id deve corrispondere
+            'tags.*' => 'exists:App\Model\Tag,id' // stessa cosa di category
         ]);
 
         $data = $request->all();
@@ -93,7 +94,13 @@ class PostController extends Controller
         $newPost->fill($data);
         $newPost->slug = $slug;
         $newPost->save();
-        
+
+
+        //se è diverso da empty ** empty controlla se la variabile esiste e se è vuota
+        if(!empty($data['tags'])) {
+            $newPost->tags()->attach($data['tags']);
+        }
+
         //solito return redirect che porta allo show ['post' => $newPost ...post è $newPost ]
         return redirect()->route('admin.posts.show', $newPost->slug);
 
@@ -124,7 +131,8 @@ class PostController extends Controller
     {
         // @dd('a');
          $categories = Category::all();
-         return view('admin.posts.edit', ['post'=> $post, 'categories' => $categories]);
+         $tags = Tag::all();
+         return view('admin.posts.edit', ['post'=> $post, 'categories' => $categories, 'tags' => $tags]);
          
     }
 
