@@ -39,4 +39,10 @@ class Post extends Model
         //questa tabella si collega ad category  con belongTo 
         return $this->belongsTo('App\Model\Category');
     }
+
+    public function tags()
+    {
+        //creo collegamento con i tags e faccio la stessa cosa su post
+        return $this->belongsToMany('App\Model\Tag');
+    }
 }
