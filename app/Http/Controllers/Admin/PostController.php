@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 // se non si importa questa stringa con Auth non sarà possibile effettuare il filtro per post utente
 // vedi indexUser
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -64,7 +65,9 @@ class PostController extends Controller
             'title'=> 'required|max:255',
             'content' => 'required',
             'category_id'=> 'exists:App\Model\Category,id', //category id deve corrispondere
-            'tags.*' => 'exists:App\Model\Tag,id' // stessa cosa di category
+            'tags.*' => 'exists:App\Model\Tag,id',// stessa cosa di category
+            'image' =>'required|image'
+
         ]);
 
         $data = $request->all();
@@ -95,6 +98,11 @@ class PostController extends Controller
         $newPost->slug = $slug;
         $newPost->save();
 
+        // se data image non è vuoto data image = a $img_path che sarebbe l'indirizzo della mia immagine
+        if(!empty($data['image'])) {
+            $img_path= Storage::put('uploads', $data['image']); 
+            $data['image'] = $img_path;
+        }
 
         //se è diverso da empty ** empty controlla se la variabile esiste e se è vuota
         if(!empty($data['tags'])) {
