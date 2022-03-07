@@ -169,6 +169,14 @@ class PostController extends Controller
 
         ]);
 
+        if(!empty($data['image'])) {
+
+            Storage::delete($post->image);
+
+            $img_path= Storage::put('uploads', $data['image']); 
+
+            $post->image = $img_path;
+        }
 
         //parte da rivedere in quanto non perfettamente chiara:
         //slug postpresente e ciclo while prese dalla repo di chiara per comprenderle meglio
@@ -199,11 +207,13 @@ class PostController extends Controller
 
         if(!empty($data['image'])) {
 
-            $Storage::delete($post->image);
+            Storage::delete($post->image);
+
             $img_path= Storage::put('uploads', $data['image']); 
 
             $post->image = $img_path;
         }
+       
 
         if(!empty($data['tags'])) {
             $post->tags()->sync($data['tags']);   // sync serve a modificare ciò che ho gia (se avessi fatto attch mi avrebbe solo aggiunto qualcosa ma non tolto)  ** 
