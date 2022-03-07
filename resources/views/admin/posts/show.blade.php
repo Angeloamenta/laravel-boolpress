@@ -13,6 +13,7 @@
                   {{-- prendo il nome dell'user  --}}
                    <p> by: <strong>{{$post->user()->first()->name}}</strong></p> 
                   {{-- <a href="" class="btn btn-primary">Button</a> --}}
+                  <img src="{{ asset('storage/' . $post->image)}}" alt="">
                 </div>
               </div>
         </div>

@@ -60,7 +60,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-          @dd($request->all());
+          //@dd($request->all());
         $validateData = $request->validate ([
             'title'=> 'required|max:255',
             'content' => 'required',
@@ -91,6 +91,7 @@ class PostController extends Controller
             //il conunter ad ogni giro aumenta "++"
             $counter++;
         }
+        
         if(!empty($data['image'])) {
             $img_path= Storage::put('uploads', $data['image']); 
             $data['image'] = $img_path;
@@ -122,7 +123,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-         @dd($post);
+        //@dd($post);
         // $data = [
         //     'post' => $post,
         //     ];
