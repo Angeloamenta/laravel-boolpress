@@ -68,7 +68,7 @@ class PostController extends Controller
             'content' => 'required',
             'category_id'=> 'exists:App\Model\Category,id', //category id deve corrispondere
             'tags.*' => 'exists:App\Model\Tag,id',// stessa cosa di category
-             'image' =>'required|image'
+             'image' =>'nullable|image'
 
         ]);
 
@@ -164,7 +164,9 @@ class PostController extends Controller
             'title'=> 'required|max:255',
             'content' => 'required',
             'category_id'=> 'exists:App\Model\Category,id', //category id deve corrispondere 
-            'tags.*' => 'exists:App\Model\Tag,id'
+            'tags.*' => 'exists:App\Model\Tag,id',
+            'image' =>'nullable|image'
+
         ]);
 
 
@@ -194,6 +196,14 @@ class PostController extends Controller
         //$newPost->slug = $slug;
 
         $post->update();
+
+        if(!empty($data['image'])) {
+
+            $Storage::delete($post->image);
+            $img_path= Storage::put('uploads', $data['image']); 
+
+            $post->image = $img_path;
+        }
 
         if(!empty($data['tags'])) {
             $post->tags()->sync($data['tags']);   // sync serve a modificare ciò che ho gia (se avessi fatto attch mi avrebbe solo aggiunto qualcosa ma non tolto)  ** 

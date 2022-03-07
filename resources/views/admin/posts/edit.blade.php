@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <form action="{{ route('admin.posts.update', $post) }}" method="post">
+            <form action="{{ route('admin.posts.update', $post) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
                 <select class="form-select" name="category_id">
@@ -51,6 +51,20 @@
                         </div>
                     @enderror
                 </div>
+                @if (!empty($post->image))
+                <div>
+                    <img src="{{ asset('storage/' . $post->image)}}" alt="">
+                </div>
+                @endif
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input class="form-control" type="file" id="image" name="image">
+                  </div>
+                  @error('image')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 <div class="mb-3">
                     <label for="content" class="form-label">Content</label>
                     <textarea class="form-control" id="content" rows="3"
