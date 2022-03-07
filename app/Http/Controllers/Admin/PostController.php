@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Str;
 
 use App\Model\Post;
+use Illuminate\Support\Facades\Storage;
 use App\Model\Tag;
 use App\Http\Controllers\Controller;
 use App\Model\Category;
@@ -12,7 +13,7 @@ use Illuminate\Http\Request;
 // se non si importa questa stringa con Auth non sarà possibile effettuare il filtro per post utente
 // vedi indexUser
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
@@ -60,13 +61,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        //@dd(Storage::put('uploads', $data['image']));
           //@dd($request->all());
         $validateData = $request->validate ([
             'title'=> 'required|max:255',
             'content' => 'required',
             'category_id'=> 'exists:App\Model\Category,id', //category id deve corrispondere
             'tags.*' => 'exists:App\Model\Tag,id',// stessa cosa di category
-            'image' =>'nullable|image'
+             'image' =>'required|image'
 
         ]);
 
