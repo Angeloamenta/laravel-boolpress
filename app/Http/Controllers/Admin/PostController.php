@@ -60,13 +60,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //  @dd($request->all());
+          @dd($request->all());
         $validateData = $request->validate ([
             'title'=> 'required|max:255',
             'content' => 'required',
             'category_id'=> 'exists:App\Model\Category,id', //category id deve corrispondere
             'tags.*' => 'exists:App\Model\Tag,id',// stessa cosa di category
-            'image' =>'required|image'
+            'image' =>'nullable|image'
 
         ]);
 
@@ -91,6 +91,10 @@ class PostController extends Controller
             //il conunter ad ogni giro aumenta "++"
             $counter++;
         }
+        if(!empty($data['image'])) {
+            $img_path= Storage::put('uploads', $data['image']); 
+            $data['image'] = $img_path;
+        }
 
         $newPost = new Post();
 
@@ -99,10 +103,6 @@ class PostController extends Controller
         $newPost->save();
 
         // se data image non è vuoto data image = a $img_path che sarebbe l'indirizzo della mia immagine
-        if(!empty($data['image'])) {
-            $img_path= Storage::put('uploads', $data['image']); 
-            $data['image'] = $img_path;
-        }
 
         //se è diverso da empty ** empty controlla se la variabile esiste e se è vuota
         if(!empty($data['tags'])) {
@@ -122,7 +122,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        // @dd($post->slug);
+         @dd($post);
         // $data = [
         //     'post' => $post,
         //     ];
