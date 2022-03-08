@@ -4,6 +4,7 @@
       <div class="col" v-for="(post, index) in posts" :key="index">
         <div class="card">
           <!-- <img :src="'/storage/'+product.image" class="card-img-top" :alt="product.name"> -->
+          <img :src="'/storage/'+post.image" alt="">
           <div class="card-body">
             <h5 class="card-title">{{ post.title }}</h5>
             <p class="card-text">{{ post.content }}</p>
