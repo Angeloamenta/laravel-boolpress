@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index() {
 
-        $posts = post::all();
+        $posts = Post::paginate(8);
     
         return response()->json(
             [

@@ -12,12 +12,12 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row mt-3 bg-light">
+    <div class="row mt-3 bg-light">
       <ul class="list-inline bg-light">
-        <li class="list-inline-item"> <button v-if="prev_page_url" class="btn btn-primary" @click="changePage('prev_page_url')">Prev</button></li>
-        <li class="list-inline-item"> <button v-if="next_page_url" class="btn btn-primary" @click="changePage('next_page_url')">Next</button></li>
+        <li class="list-inline-item"> <button class="btn btn-primary" @click="changePrev()">Prev</button></li>
+        <li class="list-inline-item"> <button class="btn btn-primary" @click="changeNext()">Next</button></li>
       </ul>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -29,19 +29,53 @@ import Axios from "axios";
     data() {
       return {
         posts: null,
-        
+        counter: 1,
       }
     },
     created() {
      Axios.get('http://localhost:8000/api/posts').then(
      (results) =>{
          console.log(results);
-         this.posts = results.data.results.posts;
-     }
- )
+         this.posts = results.data.results.posts.data;
+    //  console.log('prova', this.posts.length)
+     })
     },
     methods: {
-      
+        changeNext() {
+            this.counter += 1
+
+            if (this.counter > this.posts.length) {
+                
+            }else {
+                
+            Axios.get(`http://localhost:8000/api/posts?page=${this.counter}`).then(
+           (results) =>{
+               console.log(results);
+               console.log(this.counter);
+               this.posts = results.data.results.posts.data;
+          //  console.log('prova', this.posts.length)
+           })
+
+            }
+      },
+
+      changePrev() {
+            this.counter -= 1
+
+            if (this.counter <= 1) {
+                
+            }else {
+                
+            Axios.get(`http://localhost:8000/api/posts?page=${this.counter}`).then(
+           (results) =>{
+               console.log(results);
+               console.log(this.counter);
+               this.posts = results.data.results.posts.data;
+          //  console.log('prova', this.posts.length)
+           })
+
+            }
+      }
     }
   }
 </script>
