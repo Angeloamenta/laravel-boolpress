@@ -30,6 +30,7 @@ import Axios from "axios";
       return {
         posts: null,
         counter: 1,
+        lastPage: 1
       }
     },
     created() {
@@ -37,6 +38,8 @@ import Axios from "axios";
      (results) =>{
          console.log(results);
          this.posts = results.data.results.posts.data;
+         this.lastPage = results.data.results.posts.last_page;
+        console.log(this.lastPage);
     //  console.log('prova', this.posts.length)
      })
     },
@@ -44,13 +47,15 @@ import Axios from "axios";
         changeNext() {
             this.counter += 1
 
-            if (this.counter > this.posts.length) {
-                
+            if (this.counter > this.lastPage) {
+                this.counter = this.lastPage
             }else {
-                
+
             Axios.get(`http://localhost:8000/api/posts?page=${this.counter}`).then(
            (results) =>{
                console.log(results);
+               console.log(results.data.results.posts.last_page);
+
                console.log(this.counter);
                this.posts = results.data.results.posts.data;
           //  console.log('prova', this.posts.length)
@@ -61,11 +66,10 @@ import Axios from "axios";
 
       changePrev() {
             this.counter -= 1
+             if (this.counter < 1) {
+                 this.counter = 1
+             }else {
 
-            if (this.counter <= 1) {
-                
-            }else {
-                
             Axios.get(`http://localhost:8000/api/posts?page=${this.counter}`).then(
            (results) =>{
                console.log(results);
@@ -74,7 +78,7 @@ import Axios from "axios";
           //  console.log('prova', this.posts.length)
            })
 
-            }
+        }
       }
     }
   }
