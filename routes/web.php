@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -35,3 +35,7 @@ Route::middleware('auth') //controllo se sono loggato
         Route::resource('categories', 'CategoryController');
         Route::resource('posts', 'PostController');
     });
+
+    Route::get("{any?}", function () {
+        return view("guest.home");
+      })->where("any", ".*");

@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        @yield('script')
         <style>
             html, body {
                 background-color: #fff;
@@ -78,7 +79,7 @@
                     @endauth
                 </div>
             @endif
-
+{{-- 
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
@@ -94,7 +95,12 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
-            </div>
+            </div> --}}
+        </div>
+        <div id="app">
+            <main>
+                @yield('content')
+            </main>
         </div>
     </body>
 </html>
