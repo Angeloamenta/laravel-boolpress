@@ -9,9 +9,13 @@
 
 <script>
 import Axios from "axios";
+import Main from '../components/Main.vue';
 
   export default {
-    name: "Main",
+    name: "Home",
+    components: {
+      Main
+    },
     data() {
       return {
         posts: null,

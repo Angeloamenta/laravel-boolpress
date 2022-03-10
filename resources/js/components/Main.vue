@@ -28,9 +28,9 @@
     name: "Main",
     props: ['posts'],
     methods: {
-      // changeNext() {
-      //   this.$emit('changeNext');
-      // }
+     changeNext() {
+         this.$emit('changeNext');
+       }
     }
   }
 </script>
