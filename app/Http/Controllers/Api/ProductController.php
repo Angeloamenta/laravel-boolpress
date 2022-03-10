@@ -28,6 +28,20 @@ class ProductController extends Controller
         return response()->json(
             [
                 'response' => true,
+                'count' => $product ? 1: 0,
+                'results' => [
+                    'data' => $posts
+                ],            
+            ]);
+    }
+
+    public function show($id) {
+
+        $posts = Post::find($id);
+    
+        return response()->json(
+            [
+                'response' => true,
                 'results' => [
                     'data' => $posts
                 ],            

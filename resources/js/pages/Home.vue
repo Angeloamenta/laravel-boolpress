@@ -27,6 +27,8 @@ import Main from '../components/Main.vue';
      Axios.get('http://localhost:8000/api/posts').then(
      (results) =>{
          console.log(results);
+         // se volessi visualizzare l'api in random ordero dovrei 
+         //aggiungere /random in axios e cancellare .posts in this.posts
          this.posts = results.data.results.posts.data;
          this.lastPage = results.data.results.posts.last_page;
         console.log(this.lastPage);

@@ -10,6 +10,7 @@
             <p class="card-text">{{ post.content }}</p>
           </div>
         </div>
+        <router-link class="btn btn-info" :to="{ name: 'product', params: { id: post.id } }">View</router-link>
       </div>
     </div>
     <div class="row mt-3 bg-light">

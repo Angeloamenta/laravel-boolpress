@@ -13,6 +13,7 @@ import Home from './pages/Home';
 import Contacts from './pages/Contacts';
 import Products from './pages/Products';
 import About from './pages/About';
+import Product from './pages/Product';
 
 
 import VueRouter from 'vue-router';
@@ -35,6 +36,12 @@ const router = new VueRouter ({
             path: '/products',
             name: 'products',
             component: Products
+        },
+        {
+            path: '/products/:id',
+            name: 'product',
+            props: true, 
+            component: Product
         },
         {
             path: '/contacts',
