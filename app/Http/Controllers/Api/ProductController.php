@@ -28,7 +28,6 @@ class ProductController extends Controller
         return response()->json(
             [
                 'response' => true,
-                'count' => $product ? 1: 0,
                 'results' => [
                     'data' => $posts
                 ],            
@@ -37,13 +36,14 @@ class ProductController extends Controller
 
     public function show($id) {
 
-        $posts = Post::find($id);
+        $post = Post::find($id);
     
         return response()->json(
             [
                 'response' => true,
+                'count' => $post ? 1: 0,
                 'results' => [
-                    'data' => $posts
+                    'data' => $post
                 ],            
             ]);
     }
