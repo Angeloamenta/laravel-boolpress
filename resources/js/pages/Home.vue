@@ -1,6 +1,9 @@
 <template>
   <div>
       Home
+      <div>
+        <Main :posts="posts"></Main>
+      </div>
   </div>
 </template>
 

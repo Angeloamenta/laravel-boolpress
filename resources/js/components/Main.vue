@@ -22,15 +22,15 @@
 </template>
 
 <script>
-import Axios from "axios";
+// import Axios from "axios";
 
   export default {
     name: "Main",
     props: ['posts'],
     methods: {
-      changeNext() {
-        this.$emit('changeNext');
-      }
+      // changeNext() {
+      //   this.$emit('changeNext');
+      // }
     }
   }
 </script>
