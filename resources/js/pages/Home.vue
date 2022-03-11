@@ -2,14 +2,8 @@
   <div>
       <div>
         <Caricamento v-if="!posts"></Caricamento>
-        <Main :posts="posts" v-else></Main>
+        <Main :posts="posts" @changeNext="changeNext($event)" v-else></Main>
       </div>
-          <div class="row mt-3 bg-light">
-      <ul class="list-inline bg-light">
-        <li class="list-inline-item"> <button class="btn btn-primary" @click="changePrev()">Prev</button></li>
-        <li class="list-inline-item"> <button class="btn btn-primary" @click="changeNext()">Next</button></li>
-      </ul>
-    </div>
   </div>
 </template>
 
