@@ -2,7 +2,8 @@
   <div>
       <div>
         <Caricamento v-if="!posts"></Caricamento>
-        <Main :posts="posts" @changeNext="changeNext($event)" v-else></Main>
+                      <!--@changeNext questo è il nome che ho dato su main -->
+        <Main :posts="posts" @changeNext="changeNext()" @changePrev="changePrev()" v-else></Main>
       </div>
   </div>
 </template>

@@ -29,9 +29,13 @@
     name: "Main",
     props: ['posts'],
     methods: {
-      changeNext($event) {
-        this.$emit;
-      }
+      changeNext() {   
+                  // questo è il nome che la funzione avrà su home
+        this.$emit('changeNext');   
+        },
+        changePrev() {   
+        this.$emit('changePrev');   
+        }
     }
   }
 </script>
