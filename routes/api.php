@@ -22,4 +22,4 @@ Route::get('/posts', 'Api\ProductController@index');
 Route::get('/posts/random', 'Api\ProductController@inRandomOrder');
 Route::get('/posts/{id}', 'Api\ProductController@show')->middleware('api.auth');
 
-// Route::post('/posts', 'Api\ProductController@show');
+Route::post('/contacts', 'Api\ContactController@sendMessage')->middleware('api.auth');
