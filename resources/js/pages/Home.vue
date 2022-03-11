@@ -1,7 +1,8 @@
 <template>
   <div>
       <div>
-        <Main :posts="posts"></Main>
+        <Caricamento v-if="!posts"></Caricamento>
+        <Main :posts="posts" v-else></Main>
       </div>
           <div class="row mt-3 bg-light">
       <ul class="list-inline bg-light">
@@ -15,11 +16,14 @@
 <script>
 import Axios from "axios";
 import Main from '../components/Main.vue';
+import Caricamento from '../components/Caricamento.vue';
+
 
   export default {
     name: "Home",
     components: {
-      Main
+      Main,
+      Caricamento
     },
     data() {
       return {
