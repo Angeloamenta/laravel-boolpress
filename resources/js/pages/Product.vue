@@ -31,7 +31,7 @@
     },
     methods: {
       getProduct(url){
-          Axios.get(url, {headers: {'Authorization': 'Bearer 12345678'}}).then(
+          Axios.get(url, {headers: {'Authorization': 'Bearer 123qwerty'}}).then(
             (result) => {
               console.log(result);
               this.post = result.data.results.data;
